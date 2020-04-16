@@ -8,7 +8,6 @@ declare -A array
 
 NO_PLAY=0
 LADDER=1
-PLAYER1=0
 WINNING_POSITION=100
 
 die=$((1+RANDOM%6))
@@ -67,3 +66,11 @@ then
 	checkCase
 fi
 
+player1=$( checkCase )
+player2=$( checkCase )
+if [ $player1 -gt $player2 ]
+then
+	echo "Player1 Win"
+else
+	echo "Player2 Win"
+fi
