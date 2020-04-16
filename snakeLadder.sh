@@ -9,20 +9,24 @@ LADDER=1
 SANKE=2
 PLAYER1=0
 
-dice=$((1+RANDOM%6))
-
+die=$((1+RANDOM%6))
+function checkCase()
+{
 read -p "Enter The Choice :=" choice
+dice=$((1+RANDOM%6))
 case $choice in
-	$NO_PLAY)
-		startPosition=$startPosition
+	1)	echo "No Play"
+		position=$position
 		;;
 
-	$LADDER)
+	2)	echo "Case Of Ladder"
 		startPosition=$(($startPosition+$dice))
 		;;
 
-	$SNAKE)
+	3)	echo "Case Of Snake"
 		startPosition=$(($startPosition-$dice))
 		;;
 esac
+}
+checkCase
 echo $startPosition
