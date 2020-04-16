@@ -3,10 +3,10 @@ echo "Snake And Ladder Simulatior..."
 
 startPosition=0
 position=0
+play=0
 
 NO_PLAY=0
 LADDER=1
-SANKE=2
 PLAYER1=0
 WINNING_POSITION=100
 
@@ -28,6 +28,7 @@ case $choice in
 esac
 function checkCase()
 {
+while [[ $position -le $WINNING_POSITION ]]
 while [[ $position -lt $WINNING_POSITION ]]
 do
 	dieRoll=$((1+RANDOM%6))
@@ -39,6 +40,10 @@ do
 
 			2)
 			startPoition=$(($startPosition+$dieRoll))
+			if [ $position -gt 100 ] 
+          		then
+               		position=$(( $position - $dieRoll ))
+          		fi
 			;;
 
 			3)
