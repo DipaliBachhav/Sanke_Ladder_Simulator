@@ -8,15 +8,14 @@ NO_PLAY=0
 LADDER=1
 SANKE=2
 PLAYER1=0
+WINNING_POSITION=100
 
 die=$((1+RANDOM%6))
-function checkCase()
-{
 read -p "Enter The Choice :=" choice
 dice=$((1+RANDOM%6))
 case $choice in
 	1)	echo "No Play"
-		position=$position
+		startPosition=$position
 		;;
 
 	2)	echo "Case Of Ladder"
@@ -27,6 +26,34 @@ case $choice in
 		startPosition=$(($startPosition-$dice))
 		;;
 esac
+function checkCase()
+{
+while [[ $position -lt $WINNING_POSITION ]]
+do
+	dieRoll=$((1+RANDOM%6))
+	random=$((RANDOM%3))
+
+		case $random in
+			1) echo $position
+			;;
+
+			2)
+			startPoition=$(($startPosition+$dieRoll))
+			;;
+
+			3)
+			startPosition=$(($startPosition-$dieRoll))
+			;;
+
+esac
+echo $startPosition
+(( position++ ))
+done
 }
 checkCase
-echo $startPosition
+
+if [[ $position -lt 0 ]]
+then
+	checkCase
+fi
+
