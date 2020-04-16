@@ -4,6 +4,7 @@ echo "Snake And Ladder Simulatior..."
 startPosition=0
 position=0
 play=0
+declare -A array
 
 NO_PLAY=0
 LADDER=1
@@ -44,6 +45,8 @@ do
           		then
                		position=$(( $position - $dieRoll ))
           		fi
+			array[$play]=$position
+			((play++))
 			;;
 
 			3)
@@ -54,6 +57,8 @@ esac
 echo $startPosition
 (( position++ ))
 done
+array[$play]=$position
+
 }
 checkCase
 
