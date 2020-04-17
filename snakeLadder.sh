@@ -28,8 +28,7 @@ case $choice in
 esac
 function checkCase()
 {
-while [[ $position -le $WINNING_POSITION ]]
-while [[ $position -lt $WINNING_POSITION ]]
+while [[ $position -le $WINNING_POSITION || $position -lt $WINNING_POSITION ]]
 do
 	dieRoll=$((1+RANDOM%6))
 	random=$((RANDOM%3))
@@ -56,9 +55,8 @@ esac
 echo $startPosition
 (( position++ ))
 done
-array[$play]=$position
-
 }
+array[$play]=$position
 checkCase
 
 if [[ $position -lt 0 ]]
@@ -66,8 +64,8 @@ then
 	checkCase
 fi
 
-player1=$( checkCase )
-player2=$( checkCase )
+player1=$(( checkCase ))
+player2=$(( checkCase ))
 if [ $player1 -gt $player2 ]
 then
 	echo "Player1 Win"
