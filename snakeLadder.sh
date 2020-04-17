@@ -10,22 +10,6 @@ NO_PLAY=0
 LADDER=1
 WINNING_POSITION=100
 
-die=$((1+RANDOM%6))
-read -p "Enter The Choice :=" choice
-dice=$((1+RANDOM%6))
-case $choice in
-	1)	echo "No Play"
-		startPosition=$position
-		;;
-
-	2)	echo "Case Of Ladder"
-		startPosition=$(($startPosition+$dice))
-		;;
-
-	3)	echo "Case Of Snake"
-		startPosition=$(($startPosition-$dice))
-		;;
-esac
 function checkCase()
 {
 while [[ $position -le $WINNING_POSITION || $position -lt $WINNING_POSITION ]]
